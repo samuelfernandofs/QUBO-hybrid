@@ -1,9 +1,9 @@
 # QUBO-hybrid
 Python Quantum framework for building hybrid asynchronous decomposition samplers for quadratic unconstrained binary optimization (QUBO) problems
 
-2.2 Full QUBO Solver
+Full QUBO Solver
 
-Firstly, we've defined a basic QUBO formulation for solving instances of the Vehicle Routing Problem (VRP). The formulation is inspired by a similar one for the Traveling Salesman Problem (TSP) in [20].
+We've defined a basic QUBO formulation for solving instances of the Vehicle Routing Problem (VRP). The formulation is inspired by a similar one for the Traveling Salesman Problem (TSP)
 
 Let's define the binary function
 
