@@ -1,0 +1,21 @@
+import dimod
+import hybrid
+
+# Construct a problem
+bqm = dimod.BinaryQuadraticModel({}, {'ab': 1, 'bc': -1, 'ca': 1}, 0, dimod.SPIN)
+
+# Define the workflow
+iteration = hybrid.RacingBranches(
+    hybrid.InterruptableTabuSampler(),
+    hybrid.EnergyImpactDecomposer(size=2)
+    | hybrid.QPUSubproblemAutoEmbeddingSampler()
+    | hybrid.SplatComposer()
+) | hybrid.ArgMin()
+workflow = hybrid.LoopUntilNoImprovement(iteration, convergence=3)
+
+# Solve the problem
+init_state = hybrid.State.from_problem(bqm)
+final_state = workflow.run(init_state).result()
+
+# Print results
+print("Solution: sample={.samples.first}".format(final_state))
